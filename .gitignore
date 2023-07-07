@@ -1,0 +1,16 @@
+# ignore local generated files for iso build
+/iso
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+# C extensions
+*.so
+# Text editor temporal files
+*~
+*.save
+*.swp
+/.idea
+/venv
+/.vscode
+# Pyenv files
+.python-version
