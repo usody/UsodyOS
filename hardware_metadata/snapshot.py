@@ -4,6 +4,7 @@ import requests
 import socket
 
 from pathlib import Path
+from __init__ import __version__ as hwmd_version
 
 try:
     from hw_retrieval import HWMD
@@ -12,7 +13,6 @@ except ModuleNotFoundError:
     sys.path.append(Path(__file__).parent.parent.absolute().as_posix()
     )
     from hardware_metadata.hw_retrieval import HWMD
-
 
 
 class Snapshot():
@@ -30,6 +30,7 @@ class Snapshot():
         self.type = 'Snapshot'
         self.software = software
         self.software_version = software_version
+        self.hwmd_version = hwmd_version
         self.schema_api = '1.0.0'
 
         self.dh_url = settings.DH_URL
@@ -41,7 +42,7 @@ class Snapshot():
     def generate_snapshot(self):
         """ Getting hardware data and generate snapshot object."""
         hw_data = {}
-        hw_data.update({'hwmd_version': self.software_version})
+        hw_data.update({'hwmd_version': self.hwmd_version})
         hw_data.update({'lshw': HWMD.get_lshw_data(self.logs)})
         hw_data.update({'dmidecode': HWMD.get_dmi_data(self.logs)})
         hw_data.update({'lspci': HWMD.get_lspci_data(self.logs)})

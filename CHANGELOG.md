@@ -13,6 +13,7 @@ _(hardware_metadata = 1.0.0b2 | sanitize = 0.1.0b7)_
 - [added] upgrade ISO system to Debian 12
 - [added] hardware_metadata folder
 - [added] nvme-cli sanitize requirements
+- [added] hwmd version in snapshot
 - [changed] installation folder name to usody
 - [changed] rename project to UsodyOS
 - [changed] settings class and file
