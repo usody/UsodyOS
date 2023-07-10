@@ -81,13 +81,13 @@ MENU COLOR msg07        37;40   #90ffffff #a0000000 std
 MENU COLOR tabmsg       31;40   #30ffffff #00000000 std
 
 LABEL linux
-  MENU LABEL SanitizeOS
+  MENU LABEL UsodyOS
   MENU DEFAULT
   KERNEL /live/vmlinuz
   APPEND initrd=/live/initrd boot=live net.ifnames=0 biosdevname=0 persistence
 
 LABEL linux
-  MENU LABEL SanitizeOS (nomodeset)
+  MENU LABEL UsodyOS (nomodeset)
   MENU DEFAULT
   KERNEL /live/vmlinuz
   APPEND initrd=/live/initrd boot=live net.ifnames=0 biosdevname=0 persistence nomodeset
@@ -110,12 +110,12 @@ set timeout=1
 
 # If X has issues finding screens, experiment with/without nomodeset.
 
-menuentry "SanitizeOS" {
+menuentry "UsodyOS" {
     linux (\$root)/live/vmlinuz boot=live net.ifnames=0 biosdevname=0 persistence
     initrd (\$root)/live/initrd
 }
 
-menuentry "SanitizeOS (nomodeset)" {
+menuentry "UsodyOS (nomodeset)" {
     linux (\$root)/live/vmlinuz boot=live net.ifnames=0 biosdevname=0 persistence nomodeset
     initrd (\$root)/live/initrd
 }
@@ -183,7 +183,7 @@ compress_chroot_dir() {
 
 create_persistence_partition() {
   # persistent partition
-  rw_img_name="SanitizeOS_vfat.img"
+  rw_img_name="UsodyOS_vfat.img"
   rw_img_path="${ISO_PATH}/staging/${rw_img_name}"
   if [ ! -f "${rw_img_path}" ] || [ "${DEBUG:-}" ]; then
     ${SUDO} dd if=/dev/zero of="${rw_img_path}" bs=10M count=1
@@ -454,7 +454,7 @@ detect_user() {
   # detect pure root
   elif [ "\${userid}" = 0 ]; then
     SUDO=''
-    ISO_PATH="/opt/SanitizeOS"
+    ISO_PATH="/opt/UsodyOS"
   fi
 }
 END

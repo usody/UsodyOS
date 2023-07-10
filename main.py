@@ -4,7 +4,7 @@ from sanitize import Sanitize
 
 if '__main__' == __name__:
     software = 'UsodyOS'
-    software_version = '2023.2.0-alpha'
+    software_version = '2023.3.0-alpha'
     core = Core(software, software_version)
 
     print('-------------------------- [ STARTING ] --------------------------')
