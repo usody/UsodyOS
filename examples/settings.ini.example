@@ -1,0 +1,11 @@
+[settings]
+SETTINGS_VERSION = Example Basic Erasure (BE)
+
+DH_TOKEN = <token>
+DH_URL = <host>
+
+SNAPSHOTS_PATH = /mnt
+LOGS_PATH = /mnt
+
+ERASE_METHOD = BASIC
+ERASE_CONFIRMATION = False

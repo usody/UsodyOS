@@ -197,13 +197,13 @@ create_persistence_partition() {
     ${SUDO} mkdir -p "${tmp_rw_mount}/settings"
     cat > "${tmp_rw_mount}/settings/settings.ini" <<END
 [settings]
+SETTINGS_VERSION =
 
 DH_TOKEN =
 DH_URL =
 
 SNAPSHOTS_PATH = /mnt
 LOGS_PATH = /mnt
-VERSION =
 END
     ${SUDO} umount "${tmp_rw_mount}"
 
