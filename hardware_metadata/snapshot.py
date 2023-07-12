@@ -4,15 +4,17 @@ import requests
 import socket
 
 from pathlib import Path
-from __init__ import __version__ as hwmd_version
+
 
 try:
     from hw_retrieval import HWMD
+    from __init__ import __version__ as hwmd_version
 except ModuleNotFoundError:
     import sys
     sys.path.append(Path(__file__).parent.parent.absolute().as_posix()
     )
     from hardware_metadata.hw_retrieval import HWMD
+    from hardware_metadata.__init__ import __version__ as hwmd_version
 
 
 class Snapshot():
