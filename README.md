@@ -9,13 +9,17 @@ Generate a lightweight Debian-based live ISO that can extract hardware metadata,
 
 In Debian 12 Bookworm following installation steps:
 
+0. First of all make sure you have git and make packages installed to be able to continue with the next steps. To install them run the following command:
+
+    > sudo apt install git make
+
 1. Clone this repository and go to the repository main folder.
 
     > git clone https://github.com/usody/UsodyOS.git && cd UsodyOS
 
 2. Install project dependencies if needed by running the following command:
 
-    > sudo make install_dependencies
+    > sudo make install_build_dependencies
 
 3. Init and update HWMD submodule.
 
@@ -30,7 +34,7 @@ At the end of the execution, generate an ISO image inside '*<project-folder>/iso
 ## Test UsodyOS ISO
 --------------------
 
-If you want to boot UsodyOS ISO, make sure you have installed *qemu-system*, execute:
+If you want to boot UsodyOS ISO, make sure you have installed *qemu-system*, then execute:
 
 > sudo make boot_iso
 

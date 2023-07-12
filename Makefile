@@ -15,7 +15,7 @@ build_bullseye:
 build_clean:
 	rm -rf iso
 
-install_dependencies:
+install_build_dependencies:
 	# Install debian requirements
 	cat requirements.debian.txt | grep -v '^#' | sudo xargs apt install -y
 
