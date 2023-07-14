@@ -1,6 +1,5 @@
 import asyncio
 
-from hardware_metadata.core import Core
 from settings import Settings
 from usody_sanitize import erasure
 
@@ -27,6 +26,7 @@ class Sanitize:
 
     def print_sanitize_result(logs, sanitize_data):
         """Display on the screen result of sanitization."""
+        #TODO: implement when multiples disks 
         result = sanitize_data[0]['result']
         if result:
             logs.info('Sanitization process successfully completed.')

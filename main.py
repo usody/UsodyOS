@@ -1,26 +1,33 @@
 from hardware_metadata.core import Core
+from settings import Settings
 from sanitize import Sanitize
+from tests import Tests
 
 
-if '__main__' == __name__:
-    software = 'UsodyOS'
-    software_version = '2023.3.0-alpha'
-    core = Core(software, software_version)
-
-    print('-------------------------- [ STARTING ] --------------------------')
-
-    core.print_snapshot_info()
-
-    step1 = '________________| PHASE 1 - HARDWARE METADATA |__________________'
-    print(step1)
-    core.logs.debug('%s' %step1)
+def run_hardware_metadata(core):
+    step = '____________________| HARDWARE METADATA |________________________'
+    print(step)
+    core.logs.debug('%s' %step)
 
     snapshot = core.snapshot.generate_snapshot()
     json_file = core.snapshot.save_snapshot(snapshot)
+    return snapshot, json_file
 
-    step2 = '________________| PHASE 2 - SANITIZE ALL DISKS |_________________'
-    print(step2)
-    core.logs.debug('%s' %step2)
+def run_tests(core, snapshot):
+    step = '____________________| HARDWARE TESTS |____________________________'
+    print(step)
+    core.logs.debug('%s' %step)
+    tests_data = Tests.run()
+
+    # Add tests information inside snapshot and saved again
+    snapshot['tests'] = tests_data
+    core.snapshot.save_snapshot(snapshot)
+    return snapshot
+
+def run_sanitize(core, snapshot):
+    step = '____________________| SANITIZE ALL DISKS |_______________________'
+    print(step)
+    core.logs.debug('%s' %step)
 
     # Execute sanitization process
     sanitize_data = Sanitize.run(core.logs)
@@ -29,15 +36,37 @@ if '__main__' == __name__:
     Sanitize.print_sanitize_result(core.logs, sanitize_data)
 
     # Add sanitize information inside snapshot and saved again
+    #snapshot.update({'sanitize': sanitize_data})
     snapshot['sanitize'] = sanitize_data
-    json_file = core.snapshot.save_snapshot(snapshot)
+    core.snapshot.save_snapshot(snapshot)
+    return snapshot
 
-    step3 = '________________| PHASE 3 - UPLOAD SNAPSHOT |____________________'
-    print(step3)
-    core.logs.debug('%s' %step3)
+
+if '__main__' == __name__:
+    software = 'UsodyOS'
+    software_version = '2023.4.0-alpha'
+    core = Core(software, software_version)
+
+    print('-------------------------- [ STARTING ] --------------------------')
+
+    core.print_snapshot_info()
+
+    snapshot, json_file = run_hardware_metadata(core)
+
+    if Settings.TESTS:
+        snapshot = run_tests(core, snapshot)
+
+    if Settings.SANITIZE:
+        snapshot = run_sanitize(core, snapshot)
+
+    step = '____________________| UPLOADING SNAPSHOT |_______________________'
+    print(step)
+    core.logs.debug('%s' %step)
 
     response = core.snapshot.post_snapshot(snapshot)
 
     print('-------------------------- [ FINISHED ] --------------------------')
 
     core.print_summary(json_file, response)
+
+
