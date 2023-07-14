@@ -8,6 +8,16 @@ and this project adheres to [Calendar Versioning](https://calver.org/#scheme) sc
 ## [Unreleased]
 
 
+## [2023.4.0-alpha] - 2023-07-14
+_(hardware_metadata = 1.1.0a | sanitize = 0.1.0b7)_
+- [added] upgrade hardware_metadata v1.1.0a ([+info](hardware_metadata/CHANGELOG_HWMD.md))
+- [added] SANITIZE boolean in Settings
+- [added] TESTS boolean in Settings
+- [added] examples folder
+- [added] settings.ini.example
+- [added] test.py file (WIP)
+- [changed] refactor main python file
+
 ## [2023.3.0-alpha] - 2023-06-06
 _(hardware_metadata = 1.0.0b2 | sanitize = 0.1.0b7)_
 - [added] upgrade ISO system to Debian 12
