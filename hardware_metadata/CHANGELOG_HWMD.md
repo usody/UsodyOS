@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ----
 ## [Unreleased]
 
+## [1.1.0-alpha] - 2023-07-14
+_(dmidecode = 3.4 | smartmontools = 7.3 | hwinfo = 21.82 | lshw = 02.19 | lspci = 3.9.0)_
+- [added]  upgrade dmidecode to 3.4
+- [added]  upgrade smartmontools to 7.3
+- [added]  upgrade hwinfo to 21.82
+- [added]  upgrade lspci to 3.9.0
+- [changed] hwinfo command to "hwinfo --monitor"
+- [changed] lspci command with higher verbosity (-vvv)
+
 ## [1.0.0-beta2] - 2023-05-05
 _(dmidecode = 3.3 | smartmontools = 7.2 | hwinfo = 21.72 | lshw = 02.19 | lspci = 3.7.0)_
 - [added] hwmd_version in snapshot 
