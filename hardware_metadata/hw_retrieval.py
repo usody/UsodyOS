@@ -65,7 +65,7 @@ class HWMD:
 
     def get_lspci_data(log):
         """Get hardware data using lspci command."""
-        lspci_command = ['lspci -vv']
+        lspci_command = ['lspci -vvv']
         proc = subprocess.Popen(lspci_command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         lspci_output, lspci_errors = proc.communicate()
         proc.wait()
@@ -94,7 +94,7 @@ class HWMD:
 
     def get_hwinfo_data(log):
         """Get hardware data using hwinfo command."""
-        hwinfo_command = ['hwinfo --reallyall']
+        hwinfo_command = ['hwinfo --monitor']
         proc = subprocess.Popen(hwinfo_command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         hwinfo_output, hwinfo_errors = proc.communicate()
         proc.wait()
