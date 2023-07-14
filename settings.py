@@ -18,8 +18,14 @@ class Settings:
     # Path where create logs folder
     LOGS_PATH = config('LOGS_PATH', default='', cast=str)
 
+    # Bool to activate tests process
+    TESTS = config('TESTS', default=False, cast=bool)
+
+    # Bool to activate sanitize process
+    SANITIZE = config('SANITIZE', default=False, cast=bool)
+
     # Name of erasure method ('BASIC', 'BASELINE', 'ENHANCED')
-    ERASE_METHOD = config('ERASE_METHOD', default='BASIC', cast=str)
+    ERASE_METHOD = config('ERASE_METHOD', default='', cast=str)
 
     #Add confirmation before start sanitize process
     ERASE_CONFIRMATION = config('ERASE_CONFIRMATION', default=False, cast=bool)

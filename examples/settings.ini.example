@@ -7,5 +7,8 @@ DH_URL = <host>
 SNAPSHOTS_PATH = /mnt
 LOGS_PATH = /mnt
 
+TESTS = True
+
+SANITIZE = True
 ERASE_METHOD = BASIC
 ERASE_CONFIRMATION = False
