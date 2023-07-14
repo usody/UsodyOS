@@ -43,7 +43,7 @@ class Snapshot():
 
     def generate_snapshot(self):
         """ Getting hardware data and generate snapshot object."""
-        hw_data = {}
+        hw_data = []
         hw_data.update({'hwmd_version': self.hwmd_version})
         hw_data.update({'lshw': HWMD.get_lshw_data(self.logs)})
         hw_data.update({'dmidecode': HWMD.get_dmi_data(self.logs)})
@@ -55,8 +55,9 @@ class Snapshot():
           hw_data.update({'hwinfo': HWMD.get_hwinfo_data(self.logs)})
         else:
           hw_data.update({'hwinfo': ''})
+        hw_data.update({'smart': HWMD.get_smart_data(self.logs)})
           
-        tests_data = {'smart': HWMD.get_smart_data(self.logs)}
+        tests_data = [{}]
 
         # Generate snapshot
         snapshot = {
