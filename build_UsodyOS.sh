@@ -293,7 +293,7 @@ apt-get install -y --no-install-recommends \
 # Install HWMD python requirements
 pip3 install --break-system-packages requests python-decouple colorlog
 # Install sanitize library
-pip3 install --break-system-packages usody_sanitize==0.1.0b7
+pip3 install --break-system-packages usody_sanitize==0.1.1b1
 END
 )"
 }
