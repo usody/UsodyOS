@@ -6,6 +6,9 @@ and this project adheres to [Calendar Versioning](https://calver.org/#scheme) sc
 
 ----
 ## [Unreleased]
+- [added] bash_history & bash_aliases files
+- [added] autoupdate script
+- [added] script folder
 
 
 ## [2023.4.0-alpha] - 2023-07-14
