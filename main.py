@@ -6,7 +6,7 @@ from tests import Tests
 
 
 def run_hardware_metadata(core):
-    step = '____________________| HARDWARE METADATA |________________________'
+    step = '____________________| EXTRACT HARDWARE DATA |____________________'
     print(step)
     core.logs.debug('%s' %step)
 
@@ -15,7 +15,7 @@ def run_hardware_metadata(core):
     return snapshot, json_file
 
 def run_tests(core, snapshot):
-    step = '____________________| HARDWARE TESTS |____________________________'
+    step = '____________________| HARDWARE TESTS |___________________________'
     print(step)
     core.logs.debug('%s' %step)
     tests_data = Tests.run()
