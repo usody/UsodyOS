@@ -112,12 +112,12 @@ class Snapshot():
                     self.logs.debug(r['message'])
                 return response
             except Exception as ex:
-                self.logs.warning('We could not auto-upload the device.')
+                self.logs.warning('We could not auto-upload the snapshot.')
                 self.logs.warning('You can manually upload the snapshot.')
                 self.logs.debug('POST snapshot exception: %s' % ex)
                 return False
         else:
-            self.logs.warning('We could not auto-upload the device.')
+            self.logs.warning('We could not auto-upload the snapshot.')
             self.logs.warning('Settings URL or TOKEN are empty.')
             self.logs.warning('You can manually upload the snapshot.')
             return False

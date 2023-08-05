@@ -460,7 +460,7 @@ main() {
   if [ "${DEBUG:-}" ]; then
     OS_VERSION='debug'
   else
-    OS_VERSION='2023.4.0-alpha'
+    OS_VERSION='2023.4.0-beta'
   fi
   iso_name="UsodyOS_${OS_VERSION}"
   hostname='UsodyOS'

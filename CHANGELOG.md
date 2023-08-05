@@ -7,6 +7,10 @@ and this project adheres to [Calendar Versioning](https://calver.org/#scheme) sc
 ----
 ## [Unreleased]
 
+## [2023.4.0-beta] - 2023-07-26
+_(hardware_metadata = 1.1.0a | sanitize = 0.1.1b1)_
+- [added] upgrade sanitize v0.1.1b1 ([+info](https://raw.githubusercontent.com/usody/sanitize/development/CHANGELOG.md))
+- [changed] warning message when upload snapshot
 
 ## [2023.4.0-alpha] - 2023-07-14
 _(hardware_metadata = 1.1.0a | sanitize = 0.1.0b7)_

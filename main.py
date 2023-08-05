@@ -5,7 +5,7 @@ from tests import Tests
 
 
 def run_hardware_metadata(core):
-    step = '____________________| HARDWARE METADATA |________________________'
+    step = '____________________| EXTRACT HARDWARE DATA |____________________'
     print(step)
     core.logs.debug('%s' %step)
 
@@ -14,7 +14,7 @@ def run_hardware_metadata(core):
     return snapshot, json_file
 
 def run_tests(core, snapshot):
-    step = '____________________| HARDWARE TESTS |____________________________'
+    step = '____________________| HARDWARE TESTS |___________________________'
     print(step)
     core.logs.debug('%s' %step)
     tests_data = Tests.run()
@@ -44,10 +44,10 @@ def run_sanitize(core, snapshot):
 
 if '__main__' == __name__:
     software = 'UsodyOS'
-    software_version = '2023.4.0-alpha'
+    software_version = '2023.4.0-beta'
     core = Core(software, software_version)
 
-    print('-------------------------- [ STARTING ] --------------------------')
+    print('-------------------------- [ USODY OS ] --------------------------')
 
     core.print_snapshot_info()
 
@@ -59,13 +59,13 @@ if '__main__' == __name__:
     if Settings.SANITIZE:
         snapshot = run_sanitize(core, snapshot)
 
-    step = '____________________| UPLOADING SNAPSHOT |_______________________'
+    step = '____________________| UPLOAD SNAPSHOT |__________________________'
     print(step)
     core.logs.debug('%s' %step)
 
     response = core.snapshot.post_snapshot(snapshot)
 
-    print('-------------------------- [ FINISHED ] --------------------------')
+    print('------------------------------------------------------------------')
 
     core.print_summary(json_file, response)
 
