@@ -3,6 +3,10 @@ import os
 import requests
 import socket
 
+# src https://stackoverflow.com/questions/34451214/how-to-sign-and-verify-signature-with-ecdsa-in-python
+import ecdsa
+from hashlib import sha256
+
 from pathlib import Path
 
 
@@ -69,8 +73,52 @@ class Snapshot():
             'settings_version': self.settings_version,
             'hwmd': hw_data,
         }
+
+        credential = {
+            "@context": [
+                "https://www.w3.org/2018/credentials/v1",
+                "https://ereuse.org/docs/workbench1.0"
+            ],
+            "type": ["VerifiableCredential", "DeviceSnapshot"],
+            "id": "urn:uuid:" + str(self.snapshot_uuid),
+            # TODO hardcoded, comes from settings
+            "issuer": "https://devicehub.example.org/user/$user_uuid",
+            "issuanceDate": self.timestamp.isoformat(),
+            "credentialSubject": snapshot,
+            "proof": {
+                "type": "ES256",
+                # TODO hardcoded, comes generated with all the values
+                "proofValue": "0x3236652a94099a4552a8ad6b10f22c0cfcf4ff11fcc08bc4d43506aeb8fda31866c79a14007c366dbbfe95bea66f4ada73184432d25de3aaa1740b20ab230f481c"
+            }
+        }
+
+
+        # Serialize the snapshot data into bytes
+        snapshot_bytes = json.dumps(snapshot)
+
+        # TODO get it from settings
+        # SECP256k1 is the Bitcoin elliptic curve
+        privkey = ecdsa.SigningKey.generate(curve=ecdsa.SECP256k1, hashfunc=sha256) # The default is sha1
+        pubkey = privkey.get_verifying_key()
+        signature = privkey.sign(snapshot_bytes)
+        signature_hex = "0x" + signature.hex()
+        print(signature_hex, len(signature_hex))
+
+        #pubkey.verify(sig, b"message") # True
+
+        # Add the proof section to the credential
+        credential["proof"] = {
+            "type": "ES256",
+            "proofValue": signature_hex,
+        }
+
+        # Convert the signed credential dictionary to JSON
+        signed_credential_json = json.dumps(credential)
+
+
+
         self.logs.info('Snapshot generated properly.')
-        return snapshot
+        return credential
 
     def save_snapshot(self, snapshot):
         """ Save snapshot like JSON file on local storage."""
