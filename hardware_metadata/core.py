@@ -7,7 +7,7 @@ try:
     from settings import Settings
     from logs import Logs
     from snapshot import Snapshot
-except ModuleNotFoundError:
+except:
     import sys
     import pathlib
     sys.path.append(

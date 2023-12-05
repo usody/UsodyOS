@@ -1,8 +1,11 @@
 import asyncio
 
 from settings import Settings
-from usody_sanitize import erasure
 
+try:
+    from usody_sanitize import erasure
+except:
+    print('\nWARNING: usody_sanitize module not found\n')
 
 class Sanitize:
     """Set up everything you need to use the sanitize library."""
