@@ -233,8 +233,7 @@ END2
 ###################
 # configure dns
 cat > /etc/resolv.conf <<END2
-nameserver 8.8.8.8
-nameserver 1.1.1.1
+nameserver 9.9.9.9
 END2
 
 ###################
@@ -288,12 +287,12 @@ echo 'Install Sanitize'
 
 # Install sanitize debian requirements
 apt-get install -y --no-install-recommends \
-  hdparm nvme-cli < /dev/null
+  hdparm nvme-cli xxd < /dev/null
 
 # Install HWMD python requirements
 pip3 install --break-system-packages requests python-decouple colorlog
 # Install sanitize library
-pip3 install --break-system-packages usody_sanitize==0.1.0b7
+pip3 install --break-system-packages usody-sanitize==0.1.3b4
 END
 )"
 }
@@ -460,7 +459,7 @@ main() {
   if [ "${DEBUG:-}" ]; then
     OS_VERSION='debug'
   else
-    OS_VERSION='2023.4.0-alpha'
+    OS_VERSION='2023.4.0-alpha2'
   fi
   iso_name="UsodyOS_${OS_VERSION}"
   hostname='UsodyOS'
