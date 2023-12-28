@@ -51,7 +51,7 @@ class Snapshot():
         # 2022-9-8: hwinfo is slow, it is in the stage of deprecation and it is not tested
         #   hence, don't run hwinfo on test situation
         #   info: disabling it reduces the process time from 17 to 2 seconds
-        if(not os.environ.get("DISABLE_HWINFO")):
+        if not os.environ.get("DISABLE_HWINFO"):
           hw_data.update({'hwinfo': HWMD.get_hwinfo_data(self.logs)})
         else:
           hw_data.update({'hwinfo': ''})
