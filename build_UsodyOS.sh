@@ -292,7 +292,7 @@ apt-get install -y --no-install-recommends \
 # Install HWMD python requirements
 pip3 install --break-system-packages requests python-decouple colorlog
 # Install sanitize library
-pip3 install --break-system-packages usody-sanitize==0.1.3b4
+pip3 install --break-system-packages usody-sanitize==0.1.3rc2
 END
 )"
 }
@@ -459,7 +459,7 @@ main() {
   if [ "${DEBUG:-}" ]; then
     OS_VERSION='debug'
   else
-    OS_VERSION='2023.4.0-alpha2'
+    OS_VERSION='2024.2.0-beta2'
   fi
   iso_name="UsodyOS_${OS_VERSION}"
   hostname='UsodyOS'
