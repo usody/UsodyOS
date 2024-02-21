@@ -45,7 +45,7 @@ def run_sanitize(core, snapshot):
 
 if '__main__' == __name__:
     software = 'UsodyOS'
-    software_version = '2023.4.0-alpha2'
+    software_version = '2024.2.0-beta2'
     core = Core(software, software_version)
 
     print('-------------------------- [ USODY OS ] --------------------------')
