@@ -7,9 +7,15 @@ and this project adheres to [Calendar Versioning](https://calver.org/#scheme) sc
 ----
 ## [Unreleased]
 
+## [2024.2.0-beta2] - 2024-02-21
+_(hardware_metadata = 1.1.0a | sanitize = 0.1.3rc2)_
+- [added] upgrade sanitize v0.1.3rc2 ([+info](https://github.com/usody/sanitize))
+- [added] allow running it without usody_sanitize library
+- [fixed] sanitize url repository in CHANGELOG
+
 ## [2023.4.0-beta] - 2023-07-26
 _(hardware_metadata = 1.1.0a | sanitize = 0.1.1b1)_
-- [added] upgrade sanitize v0.1.1b1 ([+info](https://raw.githubusercontent.com/usody/sanitize/development/CHANGELOG.md))
+- [added] upgrade sanitize v0.1.1b1 ([+info](https://github.com/usody/sanitize))
 - [changed] warning message when upload snapshot
 
 ## [2023.4.0-alpha] - 2023-07-14
@@ -35,7 +41,7 @@ _(hardware_metadata = 1.0.0b2 | sanitize = 0.1.0b7)_
 
 ## [2023.2.0-alpha] - 2023-05-05
 _(hardware_metadata = 1.0.0b2 | sanitize = 0.1.0b7)_
-- [added] sanitize v0.1.0b7 ([+info](https://github.com/usody/sanitize/blob/dev/CHANGELOG.md#010-beta7))
+- [added] sanitize v0.1.0b7 ([+info](https://github.com/usody/sanitize))
 - [added] hardware_metadata v1.0.0b2 ([+info](https://github.com/usody/hardware_metadata/blob/testing/CHANGELOG.md#100-beta2---2023-05-05))
 - [added] SanatizeSettings class
 - [added] print sanitize result 
@@ -50,4 +56,4 @@ _(hardware_metadata = 1.0.0b1 | sanitize = 0.1.0b6)_
 - [added] LICENSE file with AGPLv3
 - [added] Makefile
 - [added] sanitizeOS.py file
-- [added] sanitize v0.1.0b6 ([+info](https://github.com/usody/sanitize/blob/prod/CHANGELOG.md#010-beta6))
+- [added] sanitize v0.1.0b6 ([+info](https://github.com/usody/sanitize))
