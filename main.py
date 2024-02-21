@@ -1,6 +1,7 @@
+import sanitize
+
 from hardware_metadata.core import Core
 from settings import Settings
-from sanitize import Sanitize
 from tests import Tests
 
 
@@ -30,10 +31,10 @@ def run_sanitize(core, snapshot):
     core.logs.debug('%s' %step)
 
     # Execute sanitization process
-    sanitize_data = Sanitize.run(core.logs)
+    sanitize_data = sanitize.sanitize_run(core.logs)
 
     # Print sanitization result
-    Sanitize.print_sanitize_result(core.logs, sanitize_data)
+    sanitize.print_sanitize_result(core.logs, sanitize_data)
 
     # Add sanitize information inside snapshot and saved again
     #snapshot.update({'sanitize': sanitize_data})
@@ -44,7 +45,7 @@ def run_sanitize(core, snapshot):
 
 if '__main__' == __name__:
     software = 'UsodyOS'
-    software_version = '2023.4.0-beta'
+    software_version = '2023.4.0-alpha2'
     core = Core(software, software_version)
 
     print('-------------------------- [ USODY OS ] --------------------------')

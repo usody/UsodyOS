@@ -11,7 +11,7 @@ In Debian 12 Bookworm following installation steps:
 
 0. First of all make sure you have git and make packages installed to be able to continue with the next steps. To install them run the following command:
 
-    > sudo apt install git make
+    > sudo apt install git make dosfstools
 
 1. Clone this repository and go to the repository main folder.
 
