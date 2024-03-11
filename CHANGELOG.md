@@ -12,6 +12,7 @@ _(hardware_metadata = 1.1.0a | sanitize = 0.1.3rc2)_
 - [added] upgrade sanitize v0.1.3rc2 ([+info](https://github.com/usody/sanitize))
 - [added] allow running it without usody_sanitize library
 - [fixed] sanitize url repository in CHANGELOG
+- [fixed] Makefile boot uefi iso path
 
 ## [2023.4.0-beta] - 2023-07-26
 _(hardware_metadata = 1.1.0a | sanitize = 0.1.1b1)_
