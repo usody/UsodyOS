@@ -1,11 +1,29 @@
 #!/bin/sh
 
-# debug
-set -x
 # exit on failure
 set -e
+
+#OS_VERSION='2024.10-beta3'
+#SANITIZE_VERSION='0.1.3rc2'
+
+# Get and set default versions.
+if [ -z "$OS_VERSION" ]; then
+  OS_VERSION="debug"
+fi
+if [ -z "$SANITIZE_VERSION" ]; then
+  SANITIZE_VERSION=""
+else
+  SANITIZE_VERSION="==${SANITIZE_VERSION}"
+fi
+
+# debug
+set -x
 # fail and exit when it cannot substitute a variable
 set -u
+
+echo "OS_VERSION is set to $OS_VERSION"
+echo "SANITIZE_VERSION is set to $SANITIZE_VERSION"
+
 
 # inspired from Ander in https://code.ungleich.ch/ungleich-public/cdist/issues/4
 # this is a way to reuse a function used inside and outside of chroot
@@ -292,7 +310,7 @@ apt-get install -y --no-install-recommends \
 # Install HWMD python requirements
 pip3 install --break-system-packages requests python-decouple colorlog
 # Install sanitize library
-pip3 install --break-system-packages usody-sanitize==0.1.3rc2
+pip3 install --break-system-packages usody-sanitize${SANITIZE_VERSION}
 END
 )"
 }
@@ -455,15 +473,11 @@ END
 )"
 
 main() {
-
-  if [ "${DEBUG:-}" ]; then
-    OS_VERSION='debug'
-  else
-    OS_VERSION='2024.2.0-beta2'
-  fi
   iso_name="UsodyOS_${OS_VERSION}"
   hostname='UsodyOS'
   root_passwd='workbench'
+
+  sed -i "s/software_version = .*/software_version = '${OS_VERSION}'/" main.py
 
   eval "${detect_user_str}" && detect_user
 

@@ -4,6 +4,18 @@
 
 Generate a lightweight Debian-based live ISO that can extract hardware metadata, perform component testing and/or securely erase data on storage devices.
 
+
+## Build with docker
+
+A recommended method to build the ISO is using docker, to reproduce the exact environment isolated from
+you OS distribution needs and requirements.
+
+To build the ISO, you just need to run the following command:
+
+```Sh
+OS_VERSION='2024.10-beta3' SANITIZE_VERSION='0.1.3rc2' ./build_with_docker.sh
+```
+
 ## Build UsodyOS ISO
 --------------------
 
