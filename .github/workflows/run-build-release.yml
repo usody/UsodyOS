@@ -1,0 +1,59 @@
+name: Usody ISO builder
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build-ISO:
+    runs-on: linux
+    container:
+      image: adriausody/builder_os:latest
+      options: --privileged
+    permissions:
+      contents: write
+      pull-requests: write
+      repository-projects: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Get UsodyOS and sanitize versions
+        env:
+          tag: ${{ github.ref_name }}
+        run: |
+          echo "SANITIZE_VERSION=$(cat ./SANITIZE_VERSION)" >> $GITHUB_ENV
+          echo "OS_VERSION=${tag#v}" >> $GITHUB_ENV
+
+      - name: Verify Environment Variables
+        run: |
+          echo "SANITIZE_VERSION=$SANITIZE_VERSION"
+          echo "OS_VERSION=$OS_VERSION"
+
+      - name: Build UsodyOS ISO
+        env:
+          SUDO_USER: True
+          USER: root
+        run: make build
+
+      - name: Determine release type
+        id: set-release-type
+        run: |
+          if [ "${GITHUB_REF}" = "refs/heads/main" ]; then
+            echo "PRERELEASE=false" >> $GITHUB_ENV
+          else
+            echo "PRERELEASE=true" >> $GITHUB_ENV
+          fi
+
+      - name: Create release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PRERELEASE: ${{ env.PRERELEASE }}
+        run: |
+          gh release create "${OS_VERSION}"  "iso/UsodyOS_${OS_VERSION}.iso" \
+              --repo="$GITHUB_REPOSITORY" \
+              --title="UsodyOS ${OS_VERSION}" \
+              --generate-notes \
+              $([ "$PRERELEASE" = "true" ] && echo "--prerelease")
